@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>POSTS</title>
+	
+</head>
+<body>
+	<h1>
+		<strong>
+			ALL the Posts Listed Below
+		</strong>
+	</h1>  
+	<br>
+	<br>
+	{% for post in all_posts %}
+		<li> 
+			<strong>
+				Author: {{ post.author }}
+			</strong>
+			<ul><strong>title: </strong>  <a href="/">{{ post.title }}</a></ul>
+			<ul><strong>text: </strong>{{ post.text }}</ul>
+			<ul><strong>created: </strong> {{post.created_date }}</ul>
+			<ul><strong>published: </strong> {{post.published_date }}</ul>
+		</li>	
+			
+	{% endfor %}
+
+</body>
+
+
+</html>
+
