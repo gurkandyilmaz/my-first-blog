@@ -25,9 +25,9 @@ TEMPLATES_DIR = BASE_DIR + '/templates/'
 SECRET_KEY = 'btvoyy_mt%xdqa+&oyluepo*10oun#(x9bta-ms28u+!bh3!lg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['gurkandrms.pythonanywhere.com','http://127.0.0.1:8000']
 
 
 # Application definition
