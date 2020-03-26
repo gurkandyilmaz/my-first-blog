@@ -2,11 +2,14 @@
 
 {% block body_block %}
 	<div class="post">
+		{% if single_post.published_date %}
 		<div class="date">
-			{% if single_post.published_date %}
 				<p>published: {{ single_post.published_date }}</p>
-			{% endif %}
 		</div>
+		{% endif %}
+		{% if user.is_authenticated %}
+		<a class="btn btn-default" href="{% url 'edit-post' primary_key=single_post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+		{% endif %}
 		<h2><a href="">{{ single_post.title }}</h2>
 		<p>{{ single_post.text|linebreaksbr }}</p>
 	</div>
