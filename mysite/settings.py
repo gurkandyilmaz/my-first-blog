@@ -28,7 +28,7 @@ SECRET_KEY = 'btvoyy_mt%xdqa+&oyluepo*10oun#(x9bta-ms28u+!bh3!lg'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+LOGIN_REDIRECT_URL = ''
 
 # Application definition
 
@@ -122,3 +122,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
+

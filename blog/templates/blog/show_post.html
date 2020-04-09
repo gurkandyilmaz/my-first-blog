@@ -1,14 +1,20 @@
 {% extends 'blog/base.html' %}
 
+
 {% block body_block %}
 	<div class="post">
+
 		{% if single_post.published_date %}
 		<div class="date">
 				<p>published: {{ single_post.published_date }}</p>
 		</div>
 		{% endif %}
 		{% if user.is_authenticated %}
-		<a class="btn btn-default" href="{% url 'edit-post' primary_key=single_post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+		<a class="btn btn-default" href="{% url 'blog:edit-post' primary_key=single_post.pk %}">Edit <span class="glyphicon glyphicon-pencil"></span></a>
+
+		<a class="btn btn-primary" href="{% url 'blog:post-publish' pk=single_post.pk %}">Publish</a>
+
+		<a class="btn btn-danger" href="{% url 'blog:post-remove' pk=single_post.pk %}">Delete <span class="glyphicon glyphicon-remove"></span></a>
 		{% endif %}
 		<h2><a href="">{{ single_post.title }}</h2>
 		<p>{{ single_post.text|linebreaksbr }}</p>
