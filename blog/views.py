@@ -5,8 +5,8 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 
 
-from .models import Post
-from .forms import PostForm
+from .models import Post, Comment
+from .forms import PostForm, CommentForm
 # Create your views here.
 
 
@@ -64,11 +64,47 @@ def post_draft_list(request):
 def post_publish(request, pk):
 	post = get_object_or_404(Post, pk=pk)
 	post.publish()
-	return redirect('show-post', primary_key=pk)
+	return redirect('blog:show-post', primary_key=pk)
 
 @login_required
 def post_remove(request, pk):
 	post = get_object_or_404(Post, pk=pk)
 	post.delete()
 
-	return redirect('post_list' )
+	return redirect('blog:post_list' )
+
+
+@login_required
+def add_comment(request, primary_key):
+	post = get_object_or_404(Post, pk=primary_key)
+
+	if request.method == 'POST':
+		form = CommentForm(request.POST)
+		if form.is_valid():
+			comment = form.save(commit=False)
+			comment.post = post
+			comment.save()
+			return redirect('blog:show-post', primary_key=post.pk)
+	else:
+		form = CommentForm()
+
+
+	return render(request, 'blog/add_comment.html', {'form':form})
+
+@login_required
+def comment_remove(request, pk_comment):
+	
+	comment = get_object_or_404(Comment, pk=pk_comment)
+	pk = comment.post_id
+	comment.delete()
+
+	return redirect('blog:show-post', primary_key=pk)
+
+@login_required
+def comment_approve(request, pk_comment):
+	comment = get_object_or_404(Comment, pk=pk_comment)
+	comment.approve()
+
+	return redirect('blog:show-post', primary_key=comment.post.pk)
+
+	

@@ -28,7 +28,7 @@ SECRET_KEY = 'btvoyy_mt%xdqa+&oyluepo*10oun#(x9bta-ms28u+!bh3!lg'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-LOGIN_REDIRECT_URL = ''
+LOGIN_REDIRECT_URL = '?next=/post_list/'
 
 # Application definition
 

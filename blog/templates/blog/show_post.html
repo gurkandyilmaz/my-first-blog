@@ -20,4 +20,36 @@
 		<p>{{ single_post.text|linebreaksbr }}</p>
 	</div>
 
+<!-- 	<div class='comment'>
+		<form method="post", action="#">
+			{% csrf_token %}
+			
+			<input type="text" name="author" value="Name"><br>
+			<textarea rows="4" cols="90">Your Comment goes Here..</textarea><br>
+			<input type="submit" class="save btn btn-primary">
+		</form>
+	</div>
+ -->
+ <hr>
+	{% for comment in single_post.comments.all %}
+		{% if user.is_authenticated or comment.approved_comment %}
+			<div class="comment">
+			<div class="date">
+				{{ comment.created_date }}
+			
+				{% if not comment.approved_comment %}
+					<a class="btn btn-default" href="{% url 'blog:comment-remove' pk_comment=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+					<a class="btn btn-default" href="{% url 'blog:comment-approve' pk_comment=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
+				{% endif %}
+			</div>
+			<strong>{{ comment.author }}</strong>
+			<p>{{ comment.text|linebreaks }}</p>
+			</div>
+
+		{% endif %}
+
+	{% empty %}
+	<a class="btn btn-default" href="{% url 'blog:add-comment' primary_key=single_post.pk %}">Add</a>
+		<p>No comments here yet :(</p>
+	{% endfor %}
 {% endblock %}

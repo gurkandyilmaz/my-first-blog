@@ -6,9 +6,15 @@ h1 a, h2 a {
 h3 a {
 
     display: inline-block;
-    color: #C25100;
+    color: rgb(255,255,255);
     font-family: 'Lobster';
     padding-left: 20px
+}
+
+.comment {
+    
+    margin: 20px 0px 20px 20px;
+
 }
 
 body {
