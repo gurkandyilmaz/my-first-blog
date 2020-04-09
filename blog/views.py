@@ -31,7 +31,7 @@ def post_new(request):
 			post.author = request.user
 
 			post.save()
-			return redirect('show-post', primary_key=post.pk)
+			return redirect('blog:show-post', primary_key=post.pk)
 	else:
 		form = PostForm()
 
@@ -47,7 +47,7 @@ def edit_post(request, primary_key):
 			post.author = request.user
 
 			post.save()
-			return redirect('show-post', primary_key=post.pk)
+			return redirect('blog:show-post', primary_key=post.pk)
 	else:
 		form = PostForm(instance=post)
 		
@@ -107,4 +107,3 @@ def comment_approve(request, pk_comment):
 
 	return redirect('blog:show-post', primary_key=comment.post.pk)
 
-	
